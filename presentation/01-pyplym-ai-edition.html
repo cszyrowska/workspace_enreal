@@ -1,0 +1,2469 @@
+<!DOCTYPE html>
+<html lang="en-GB">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>PyPlym AI Edition | The Vision</title>
+
+<style>
+
+/* ==========================================
+   PYPlym — DESIGN SYSTEM
+========================================== */
+
+:root {
+  --navy: #07192e;
+  --navy-light: #102b4a;
+  --blue: #246aa1;
+  --cyan: #71d5ef;
+  --white: #f9fcff;
+  --pale: #eaf4fa;
+  --ink: #112b45;
+  --muted: #577185;
+
+  --serif: Georgia, "Times New Roman", serif;
+  --sans: Inter, Aptos, "Segoe UI", Arial, sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: #030c17;
+  color: var(--white);
+  font-family: var(--sans);
+  overflow: hidden;
+}
+
+button {
+  font: inherit;
+}
+
+/* ==========================================
+   PRESENTATION STAGE
+========================================== */
+
+.app {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 10px;
+}
+
+.stage {
+  width: min(98vw, calc((100svh - 72px) * 16 / 9));
+  aspect-ratio: 16 / 9;
+  position: relative;
+  overflow: hidden;
+  container-type: inline-size;
+  background: var(--navy);
+  border: 1px solid #294360;
+  box-shadow: 0 30px 90px rgba(0,0,0,.6);
+}
+
+/* ==========================================
+   SLIDES
+========================================== */
+
+.slide {
+  position: absolute;
+  inset: 0;
+
+  display: none;
+  flex-direction: column;
+
+  padding: 5.4% 6.3% 5.2%;
+  overflow: hidden;
+
+  color: var(--ink);
+
+  background:
+    linear-gradient(
+      128deg,
+      #f9fcff,
+      #e8f3f9
+    );
+}
+
+.slide.active {
+  display: flex;
+}
+
+.slide.dark {
+  color: var(--white);
+
+  background:
+    radial-gradient(
+      circle at 89% 20%,
+      #1b5680 0%,
+      transparent 38%
+    ),
+    linear-gradient(
+      133deg,
+      #102c4d,
+      #06172c 80%
+    );
+}
+
+.slide.deep {
+  color: var(--white);
+
+  background:
+    radial-gradient(
+      circle at 78% 51%,
+      #124573 0%,
+      transparent 43%
+    ),
+    linear-gradient(
+      126deg,
+      #06172c,
+      #0c2949
+    );
+}
+
+/* Decorative circles */
+
+.slide::before {
+  content: "";
+  position: absolute;
+
+  width: 55%;
+  height: 70%;
+
+  right: -30%;
+  bottom: -65%;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(52,150,194,.17);
+
+  box-shadow:
+    0 0 0 25px rgba(52,150,194,.025),
+    0 0 0 52px rgba(52,150,194,.025);
+
+  pointer-events: none;
+}
+
+.slide > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* ==========================================
+   TYPOGRAPHY
+========================================== */
+
+h1,
+h2,
+h3,
+p {
+  margin-top: 0;
+}
+
+h1,
+h2 {
+  font-family: var(--serif);
+  font-weight: 400;
+  letter-spacing: -.047em;
+  line-height: 1.045;
+}
+
+h1 {
+  font-size: 7.3cqw;
+  margin-bottom: 1.8cqw;
+}
+
+h2 {
+  font-size: 5.05cqw;
+  margin-bottom: 1.5cqw;
+}
+
+h3 {
+  font-size: 2.2cqw;
+  line-height: 1.12;
+  margin-bottom: 1cqw;
+}
+
+.lead {
+  font-size: 2.05cqw;
+  line-height: 1.34;
+  color: var(--muted);
+  max-width: 49cqw;
+}
+
+.dark .lead,
+.deep .lead {
+  color: #bdd5e5;
+}
+
+.accent {
+  color: #1285b3;
+}
+
+.dark .accent,
+.deep .accent {
+  color: var(--cyan);
+}
+
+.kicker {
+  font-size: 1.05cqw;
+  letter-spacing: .19em;
+  font-weight: 800;
+
+  color: #167da9;
+
+  text-transform: uppercase;
+  margin-bottom: 1.3cqw;
+}
+
+.dark .kicker,
+.deep .kicker {
+  color: var(--cyan);
+}
+
+/* ==========================================
+   HEADER AND FOOTER
+========================================== */
+
+.head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  font-size: 1.05cqw;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  font-weight: 700;
+
+  margin-bottom: 3.3cqw;
+}
+
+.dark .head,
+.deep .head {
+  color: #bbd7e7;
+}
+
+.logo {
+  letter-spacing: .13em;
+}
+
+.logo b {
+  color: #1c92ba;
+}
+
+.dark .logo b,
+.deep .logo b {
+  color: var(--cyan);
+}
+
+.foot {
+  margin-top: auto;
+  padding-top: 1.3cqw;
+
+  border-top: 1px solid rgba(30,89,129,.18);
+
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  color: #648094;
+
+  font-size: .96cqw;
+  letter-spacing: .075em;
+}
+
+.dark .foot,
+.deep .foot {
+  border-color: rgba(255,255,255,.17);
+  color: #afc4d5;
+}
+
+/* ==========================================
+   COVER
+========================================== */
+
+.cover-title {
+  position: relative;
+  margin: auto 0;
+  max-width: 71%;
+  z-index: 2;
+}
+
+.cover-title .lead {
+  max-width: 48cqw;
+}
+
+.cover-motif {
+  position: absolute;
+  right: 2.5%;
+  top: 50%;
+  width: 42%;
+  aspect-ratio: 1;
+  transform: translateY(-50%);
+  display: grid;
+  place-items: center;
+  pointer-events: none;
+  isolation: isolate;
+}
+
+.cover-motif::before {
+  content: "";
+  position: absolute;
+  inset: -3%;
+  z-index: -1;
+  border-radius: 50%;
+  background: radial-gradient(ellipse at 55% 52%, rgba(221,241,250,.82) 0%, rgba(174,216,237,.55) 38%, rgba(113,213,239,.13) 61%, transparent 74%);
+}
+
+.cover-motif img {
+  display: block;
+  width: 100%;
+  height: auto;
+  /* Preserve the original colours and the detail inside the upper figure's head. */
+  filter: none;
+}
+
+.microline {
+  display: flex;
+  gap: 1.4cqw;
+  margin-top: 3cqw;
+
+  text-transform: uppercase;
+  letter-spacing: .16em;
+  font-size: 1.03cqw;
+
+  color: #c3dbeb;
+}
+
+.microline span + span::before {
+  content: "•";
+  margin-right: 1.4cqw;
+  color: var(--cyan);
+}
+
+/* Slide 2: evidence first, then the practical implication. */
+.learning-evidence .head { margin-bottom: 2cqw; }
+.learning-evidence h2 { font-size: 4.6cqw; margin-bottom: 1cqw; }
+.evidence-intro {
+  color: var(--muted);
+  font-size: 1.55cqw;
+  margin-bottom: 1.8cqw;
+}
+.evidence-comparison {
+  display: grid;
+  grid-template-columns: 1fr 5cqw 1fr;
+  align-items: stretch;
+  gap: 1cqw;
+}
+.evidence-card {
+  padding: 1.65cqw 2cqw;
+  border: 1px solid #c6dbe7;
+  background: rgba(255,255,255,.7);
+  border-radius: .65cqw;
+}
+.evidence-card.exam {
+  background: var(--navy);
+  color: var(--white);
+  border-color: var(--navy);
+}
+.evidence-label {
+  font-size: .95cqw;
+  font-weight: 800;
+  letter-spacing: .13em;
+  text-transform: uppercase;
+  color: var(--muted);
+  margin-bottom: 1cqw;
+}
+.exam .evidence-label { color: #bdd5e5; }
+.evidence-card h3 { font-size: 2.45cqw; margin-bottom: .65cqw; }
+.evidence-card p:last-child {
+  font-size: 1.3cqw;
+  line-height: 1.4;
+  margin-bottom: 0;
+  max-width: 29cqw;
+}
+.evidence-result {
+  display: flex;
+  align-items: baseline;
+  gap: 1cqw;
+  margin-bottom: .45cqw;
+}
+.evidence-result strong {
+  font-size: 5.7cqw;
+  font-weight: 500;
+  line-height: 1;
+  letter-spacing: -.06em;
+  color: #ffceaa;
+}
+.evidence-result span { font-size: 1.5cqw; }
+.evidence-arrow {
+  display: grid;
+  place-items: center;
+  font-size: 3cqw;
+  color: #648094;
+}
+.evidence-lesson {
+  display: grid;
+  grid-template-columns: 1fr 1.35fr;
+  gap: 2cqw;
+  align-items: center;
+  margin-top: 1.6cqw;
+  padding: 1cqw 1.7cqw;
+  border-left: 3px solid #1285b3;
+  background: #dceef5;
+}
+.evidence-lesson strong { font-size: 1.65cqw; line-height: 1.25; }
+.evidence-lesson p { font-size: 1.16cqw; line-height: 1.4; margin: 0; }
+.evidence-caveat {
+  font-size: .95cqw;
+  line-height: 1.4;
+  color: var(--muted);
+  margin: 1cqw 0 0;
+}
+.learning-evidence .foot { font-size: .85cqw; }
+.learning-evidence .foot a { color: inherit; text-underline-offset: .2em; }
+
+/* Slide 3: connect each gap directly to the proposed response. */
+.community-response {
+  padding: 3.6cqw 6.3cqw 3cqw;
+}
+.community-response .head { margin-bottom: 1.8cqw; flex-shrink: 0; }
+.community-response .kicker { margin-bottom: .8cqw; }
+.community-response h2 { font-size: 4.2cqw; margin-bottom: 1.7cqw; }
+.community-response .foot { flex-shrink: 0; margin-top: 1.5cqw; }
+.response-intro {
+  color: #bdd5e5;
+  font-size: 1.5cqw;
+  margin-bottom: 1.7cqw;
+}
+.response-table {
+  display: grid;
+  grid-template-rows: auto repeat(3, 1fr);
+  flex: 1;
+  min-height: 0;
+  gap: 1cqw;
+}
+.response-columns,
+.response-row {
+  display: grid;
+  grid-template-columns: .75fr 3cqw 1.25fr;
+  column-gap: 1.5cqw;
+  align-items: center;
+}
+.response-columns {
+  padding: 0 1.7cqw;
+  font-size: .95cqw;
+  font-weight: 800;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: #bdd5e5;
+}
+.response-columns span:last-child { color: var(--cyan); }
+.response-row {
+  padding: 1cqw 1.7cqw;
+  border: 1px solid rgba(113,213,239,.2);
+  border-radius: .6cqw;
+  background: linear-gradient(100deg, rgba(255,255,255,.025), rgba(113,213,239,.08));
+}
+.response-gap {
+  font-family: var(--serif);
+  font-size: 2.1cqw;
+  line-height: 1.15;
+  color: #c4d6e3;
+}
+.response-direction {
+  font-size: 2.2cqw;
+  text-align: center;
+  color: var(--cyan);
+}
+.response-row h3 { font-size: 1.8cqw; margin-bottom: .45cqw; }
+.response-row p {
+  font-size: 1.15cqw;
+  line-height: 1.35;
+  color: #bdd5e5;
+  margin: 0;
+}
+
+/* ==========================================
+   TWO-COLUMN FEATURES
+========================================== */
+
+.feature {
+  display: grid;
+  grid-template-columns: 1.05fr .95fr;
+  gap: 4.2cqw;
+
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+}
+
+.statement {
+  font-family: var(--serif);
+  font-weight: 400;
+  font-size: 4.2cqw;
+  line-height: 1.11;
+  letter-spacing: -.04em;
+  margin: 0;
+}
+
+.right-stack {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+}
+
+.side-note {
+  border-left: 2px solid #2694bd;
+  padding: 1.05cqw 0 1.05cqw 1.5cqw;
+}
+
+.side-note b {
+  display: block;
+  font-size: 1.47cqw;
+  margin-bottom: .55cqw;
+}
+
+.side-note p {
+  font-size: 1.27cqw;
+  line-height: 1.37;
+  margin: 0;
+  color: var(--muted);
+}
+
+.dark .side-note p {
+  color: #c1d6e5;
+}
+
+/* ==========================================
+   THREE-COLUMN TILES
+========================================== */
+
+.tiles {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.4cqw;
+
+  margin-top: 2.3cqw;
+  flex: 1;
+}
+
+.tile {
+  background: rgba(255,255,255,.66);
+  border: 1px solid rgba(30,89,129,.18);
+
+  padding: 2cqw;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.dark .tile,
+.deep .tile {
+  background: rgba(255,255,255,.045);
+  border-color: rgba(255,255,255,.2);
+}
+
+.tile .num {
+  font-family: var(--serif);
+  font-size: 3.8cqw;
+  color: #2988b7;
+
+  margin-bottom: 1.5cqw;
+}
+
+.dark .tile .num,
+.deep .tile .num {
+  color: var(--cyan);
+}
+
+.tile h3 {
+  font-size: 2.05cqw;
+  margin-top: auto;
+}
+
+.tile p {
+  font-size: 1.32cqw;
+  line-height: 1.38;
+  color: var(--muted);
+  margin: 0;
+}
+
+.dark .tile p,
+.deep .tile p {
+  color: #c1d8e7;
+}
+
+/* Slide 4: show the paired topics with an unfiltered illustration. */
+.human-machine {
+  padding: 3.6cqw 6.3cqw 3cqw;
+}
+.human-machine .head { margin-bottom: 1.8cqw; }
+.human-machine .kicker { margin-bottom: .8cqw; }
+.human-machine h2 { font-size: 4.6cqw; margin-bottom: .8cqw; }
+.human-machine .pairing-intro {
+  font-size: 1.65cqw;
+  color: var(--muted);
+  margin-bottom: 1.5cqw;
+}
+.topic-layout {
+  display: grid;
+  grid-template-columns: .8fr 1.2fr;
+  gap: 3cqw;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+}
+.topic-illustration {
+  margin: 0;
+  height: 100%;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.topic-illustration img {
+  display: block;
+  width: 100%;
+  max-height: 24cqw;
+  object-fit: contain;
+}
+.topic-illustration figcaption {
+  font-size: 1.15cqw;
+  line-height: 1.35;
+  color: var(--muted);
+  text-align: center;
+  margin-top: .6cqw;
+}
+.topic-pairs { display: grid; gap: 1cqw; }
+.topic-pair-head,
+.topic-pair {
+  display: grid;
+  grid-template-columns: 1fr 2cqw 1.15fr;
+  gap: 1cqw;
+  align-items: center;
+}
+.topic-pair-head {
+  font-size: .95cqw;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  font-weight: 800;
+  color: var(--muted);
+  padding: 0 1.4cqw;
+}
+.topic-pair {
+  padding: 1.4cqw;
+  background: rgba(255,255,255,.75);
+  border: 1px solid #c6dbe7;
+  border-radius: .6cqw;
+}
+.topic-pair h3 { font-size: 1.85cqw; margin: 0; }
+.topic-pair .topic-link { color: #1285b3; font-size: 2cqw; text-align: center; }
+.topic-pair p { font-size: 1.35cqw; line-height: 1.35; margin: 0; }
+.human-machine .foot { margin-top: 1.5cqw; flex-shrink: 0; }
+
+/* Slide 7: a compact programme beside the community illustration. */
+.season-overview { padding: 3.6cqw 6.3cqw 3cqw; }
+.season-overview .head { margin-bottom: 1.8cqw; }
+.season-overview .kicker { margin-bottom: .8cqw; }
+.season-overview h2 { font-size: 4.2cqw; margin-bottom: 1cqw; }
+.season-intro { font-size: 1.5cqw; color: var(--muted); margin-bottom: 1.8cqw; }
+.season-layout {
+  display: grid;
+  grid-template-columns: 1.45fr 1fr;
+  gap: 2.6cqw;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+}
+.season-programme {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1cqw;
+}
+.season-topic {
+  display: flex;
+  gap: 1cqw;
+  padding: 1.4cqw 1.1cqw;
+  border-top: 2px solid #abc9da;
+  background: rgba(255,255,255,.6);
+}
+.season-topic:nth-child(-n+2) { border-top-color: #1285b3; }
+.season-topic > span { font-size: 1.2cqw; color: #167da9; font-weight: 800; padding-top: .2cqw; }
+.season-topic h3 { font-size: 1.8cqw; margin-bottom: .5cqw; }
+.season-topic p { font-size: 1.15cqw; line-height: 1.35; color: var(--muted); margin: 0; }
+.season-celebration {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 0;
+}
+.season-celebration img { display: block; width: 100%; max-height: 24cqw; object-fit: contain; }
+.season-celebration figcaption { font-size: 1.3cqw; color: var(--ink); margin-top: .7cqw; text-align: center; }
+.season-review {
+  font-size: 1.15cqw;
+  color: var(--muted);
+  margin: 1.3cqw 0;
+}
+.season-review strong { color: var(--ink); }
+.season-overview .foot { flex-shrink: 0; margin-top: .5cqw; }
+
+/* Slide 9: one topic moving from online exploration to local practice. */
+.connected-slide { padding: 3.6cqw 6.3cqw 3cqw; }
+.connected-slide .head { margin-bottom: 1.8cqw; }
+.connected-slide .kicker { margin-bottom: .8cqw; }
+.connected-slide h2 { font-size: 4.3cqw; margin-bottom: 1cqw; }
+.connected-intro { font-size: 1.6cqw; color: #bdd5e5; margin-bottom: 2cqw; }
+.connected-journey {
+  display: grid;
+  grid-template-columns: 1fr 4cqw 1fr;
+  gap: 1.4cqw;
+  align-items: stretch;
+  flex: 1;
+  min-height: 0;
+}
+.connected-card {
+  padding: 2cqw 2.2cqw;
+  border: 1px solid rgba(113,213,239,.3);
+  border-radius: .7cqw;
+  background: rgba(255,255,255,.045);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.connected-card.local { background: #eaf4fa; border-color: #eaf4fa; color: var(--ink); }
+.connected-time { font-size: 1cqw; letter-spacing: .14em; text-transform: uppercase; font-weight: 800; color: var(--cyan); margin-bottom: 1cqw; }
+.local .connected-time { color: #167da9; }
+.connected-card h3 { font-family: var(--serif); font-weight: 400; font-size: 3.4cqw; margin-bottom: .9cqw; }
+.connected-card p:last-child { font-size: 1.5cqw; line-height: 1.4; color: #bdd5e5; margin-bottom: 0; }
+.connected-card.local p:last-child { color: var(--muted); }
+.connected-arrow { display: grid; place-items: center; font-size: 3.4cqw; color: var(--cyan); }
+.connected-after {
+  margin: 1.7cqw 0;
+  padding-left: 1.5cqw;
+  border-left: 2px solid var(--cyan);
+  display: flex;
+  gap: 2cqw;
+  align-items: baseline;
+}
+.connected-after strong { font-size: 1.6cqw; color: var(--cyan); white-space: nowrap; }
+.connected-after span { font-size: 1.25cqw; line-height: 1.4; color: #bdd5e5; }
+.connected-slide .foot { flex-shrink: 0; margin-top: .5cqw; }
+
+/* ==========================================
+   HUMAN × MACHINE
+========================================== */
+
+.duality {
+  display: grid;
+  grid-template-columns: 1fr .14fr 1fr;
+  gap: 1cqw;
+
+  align-items: stretch;
+  flex: 1;
+
+  margin: 2cqw 0 1cqw;
+}
+
+.dual-panel {
+  border: 1px solid rgba(255,255,255,.17);
+  background: rgba(255,255,255,.047);
+
+  padding: 2.5cqw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.dual-panel span {
+  letter-spacing: .18em;
+  text-transform: uppercase;
+
+  font-size: 1cqw;
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+.dual-panel strong {
+  font-family: var(--serif);
+  font-size: 4.6cqw;
+  font-weight: 400;
+  letter-spacing: -.04em;
+}
+
+.dual-panel p {
+  font-size: 1.55cqw;
+  line-height: 1.3;
+  color: #c7dbe8;
+  margin: 0;
+}
+
+.cross {
+  display: grid;
+  place-items: center;
+
+  font-family: var(--serif);
+  font-size: 5cqw;
+  color: var(--cyan);
+}
+
+/* Slide 5: make ownership of the keyboard explicit. */
+.pairing-slide { padding: 3.6cqw 6.3cqw 3cqw; }
+.pairing-slide .head { margin-bottom: 1.8cqw; }
+.pairing-slide .kicker { margin-bottom: .8cqw; }
+.pairing-slide h2 { font-size: 4.2cqw; margin-bottom: 1cqw; }
+.pairing-subtitle { font-size: 1.5cqw; color: #bdd5e5; margin-bottom: 1.6cqw; }
+.pairing-roles {
+  display: grid;
+  grid-template-columns: 1fr 3cqw 1fr;
+  gap: 1.2cqw;
+  flex: 1;
+  min-height: 0;
+}
+.pairing-role {
+  padding: 1.8cqw 2cqw;
+  border: 1px solid rgba(113,213,239,.3);
+  border-radius: .7cqw;
+  background: rgba(255,255,255,.045);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.pairing-role.explorer { background: #eaf4fa; color: var(--ink); border-color: #eaf4fa; }
+.pairing-role .role-label {
+  font-size: 1cqw;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: .15em;
+  margin-bottom: .9cqw;
+  color: var(--cyan);
+}
+.pairing-role.explorer .role-label { color: #167da9; }
+.pairing-role h3 {
+  font-family: var(--serif);
+  font-size: 3.2cqw;
+  font-weight: 400;
+  letter-spacing: -.035em;
+  margin-bottom: .8cqw;
+}
+.pairing-role p { font-size: 1.35cqw; line-height: 1.4; margin-bottom: 1cqw; }
+.pairing-role .role-note {
+  font-size: 1.1cqw;
+  color: #bdd5e5;
+  border-top: 1px solid rgba(113,213,239,.25);
+  padding-top: .9cqw;
+  margin: 0;
+}
+.pairing-role.explorer .role-note { color: var(--muted); border-color: #c6dbe7; }
+.pairing-plus { display: grid; place-items: center; font-size: 3cqw; color: var(--cyan); }
+.pairing-outcome {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 2cqw;
+  margin: 1.4cqw 0 0;
+  padding: 1.1cqw 0;
+}
+.pairing-outcome strong { font-size: 1.6cqw; color: var(--cyan); }
+.pairing-outcome span { font-size: 1.2cqw; color: #bdd5e5; }
+.pairing-slide .foot { margin-top: .5cqw; flex-shrink: 0; }
+
+/* ==========================================
+   BUILDERS AND EXPLORERS
+========================================== */
+
+.pair {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5cqw;
+
+  align-items: center;
+  flex: 1;
+}
+
+.person-card {
+  padding: 3cqw;
+
+  background: rgba(255,255,255,.05);
+  border: 1px solid rgba(255,255,255,.2);
+
+  min-height: 23cqw;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.person-icon {
+  width: 8cqw;
+  height: 8cqw;
+
+  border-radius: 50%;
+
+  border: 1px solid rgba(101,205,236,.5);
+
+  display: grid;
+  place-items: center;
+
+  font-family: var(--serif);
+  font-size: 4cqw;
+  color: var(--cyan);
+
+  margin-bottom: 1.8cqw;
+}
+
+.person-card h3 {
+  font-family: var(--serif);
+  font-size: 3cqw;
+  font-weight: 400;
+
+  margin-bottom: .7cqw;
+}
+
+.person-card p {
+  font-size: 1.36cqw;
+  line-height: 1.35;
+  color: #c7deec;
+
+  margin: 0;
+}
+
+.pair-center {
+  position: absolute;
+  left: 46%;
+  top: 53%;
+
+  width: 8cqw;
+  height: 6cqw;
+
+  display: grid;
+  place-items: center;
+
+  background: #0f3556;
+
+  border: 1px solid rgba(117,216,239,.6);
+  border-radius: 999px;
+
+  color: var(--cyan);
+
+  font-size: 1.2cqw;
+  letter-spacing: .1em;
+  font-weight: 800;
+}
+
+/* ==========================================
+   EVENT EXPERIENCE
+========================================== */
+
+.flow {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.05cqw;
+
+  margin: auto 0;
+}
+
+.flow-item {
+  border-top: 3px solid #258bb8;
+
+  padding: 1.6cqw 1.25cqw;
+
+  background: rgba(255,255,255,.6);
+  min-height: 17cqw;
+}
+
+.flow-item b {
+  font-family: var(--serif);
+  font-size: 4.4cqw;
+  font-weight: 400;
+  color: #1a86ae;
+}
+
+.flow-item h3 {
+  font-size: 2cqw;
+  margin: 1.5cqw 0 .8cqw;
+}
+
+.flow-item p {
+  font-size: 1.26cqw;
+  line-height: 1.38;
+  color: var(--muted);
+}
+
+/* ==========================================
+   SEASON GRID
+========================================== */
+
+.season {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.1cqw;
+
+  margin: 1.6cqw 0 1.4cqw;
+  flex: 1;
+}
+
+.season-item {
+  padding: 1.7cqw;
+
+  border: 1px solid rgba(255,255,255,.17);
+  background: rgba(255,255,255,.043);
+}
+
+.season-item small {
+  display: block;
+
+  color: var(--cyan);
+  font-size: 1.06cqw;
+  letter-spacing: .18em;
+
+  margin-bottom: 1.7cqw;
+}
+
+.season-item h3 {
+  font-family: var(--serif);
+  font-size: 2.5cqw;
+  font-weight: 400;
+
+  margin-bottom: .8cqw;
+}
+
+.season-item p {
+  font-size: 1.21cqw;
+  line-height: 1.35;
+  color: #c2d8e7;
+
+  margin: 0;
+}
+
+/* ==========================================
+   EVENT EXAMPLE
+========================================== */
+
+.event {
+  display: grid;
+  grid-template-columns: 1.1fr .9fr;
+  gap: 3.4cqw;
+
+  flex: 1;
+  align-items: center;
+}
+
+.event-step {
+  padding: 1.5cqw 0;
+  border-bottom: 1px solid rgba(30,89,129,.18);
+
+  display: flex;
+  align-items: baseline;
+  gap: 1.5cqw;
+}
+
+.event-step b {
+  width: 8cqw;
+  flex: none;
+
+  color: #1686b3;
+  font-size: 1.1cqw;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.event-step span {
+  font-size: 1.62cqw;
+}
+
+.example-box {
+  background: linear-gradient(
+    145deg,
+    #103451,
+    #071e34
+  );
+
+  color: white;
+  padding: 3cqw;
+
+  border: 1px solid #1e6b9b;
+}
+
+.example-box small {
+  color: var(--cyan);
+
+  font-size: 1cqw;
+  text-transform: uppercase;
+  letter-spacing: .17em;
+}
+
+.example-box h3 {
+  font-family: var(--serif);
+  font-size: 3.4cqw;
+  font-weight: 400;
+
+  margin: 2.7cqw 0 1.5cqw;
+}
+
+.example-box p {
+  font-size: 1.37cqw;
+  line-height: 1.4;
+  color: #c7dfed;
+}
+
+/* ==========================================
+   ENREAL CONNECTION
+========================================== */
+
+.steps {
+  margin: 1.6cqw 0;
+
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1cqw;
+}
+
+.step {
+  padding: 1.55cqw 1.1cqw;
+
+  background: rgba(255,255,255,.7);
+  border-left: 3px solid #2195bd;
+}
+
+.deep .step {
+  background: rgba(255,255,255,.08);
+}
+
+.step b {
+  display: block;
+  font-size: 1.5cqw;
+  margin-bottom: .75cqw;
+}
+
+.step p {
+  font-size: 1.25cqw;
+  line-height: 1.35;
+  color: var(--muted);
+}
+
+.deep .step p {
+  color: #c2d8e7;
+}
+
+/* ==========================================
+   IMPACT
+========================================== */
+
+.impact {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1.15cqw;
+
+  flex: 1;
+  margin: 2cqw 0;
+}
+
+.impact-item {
+  display: flex;
+  gap: 1.3cqw;
+
+  padding: 1.6cqw;
+  border-bottom: 1px solid rgba(30,89,129,.18);
+}
+
+.impact-item .symbol {
+  font-family: var(--serif);
+  font-size: 3.5cqw;
+  color: #248ab5;
+
+  width: 4.5cqw;
+  flex: none;
+}
+
+.impact-item h3 {
+  font-size: 1.8cqw;
+  margin-bottom: .45cqw;
+}
+
+.impact-item p {
+  font-size: 1.3cqw;
+  line-height: 1.38;
+
+  margin: 0;
+  color: var(--muted);
+}
+
+/* Slide 11: community contributions and accountability in one view. */
+.ecosystem-slide { padding: 3.4cqw 5cqw 3cqw; }
+.ecosystem-slide .head { margin-bottom: 1.6cqw; }
+.ecosystem-slide .kicker { margin-bottom: .7cqw; }
+.ecosystem-slide h2 { font-size: 4cqw; margin-bottom: 1.6cqw; }
+.ecosystem-layout {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: 2.7cqw;
+  flex: 1;
+  min-height: 0;
+  align-items: center;
+}
+.ecosystem-visual { margin: 0; min-height: 0; }
+.ecosystem-visual img {
+  display: block;
+  width: 100%;
+  height: auto;
+  object-fit: contain;
+  border-radius: .7cqw;
+  border: 1px solid rgba(113,213,239,.25);
+}
+.ecosystem-visual figcaption { font-size: 1cqw; line-height: 1.4; color: #bdd5e5; margin-top: .8cqw; text-align: center; }
+.ecosystem-contributions { display: grid; gap: 1.6cqw; }
+.ecosystem-contribution { padding-left: 1.3cqw; border-left: 2px solid var(--cyan); }
+.ecosystem-contribution h3 { font-size: 1.85cqw; margin-bottom: .5cqw; }
+.ecosystem-contribution p { font-size: 1.3cqw; line-height: 1.4; color: #bdd5e5; margin: 0; }
+.ecosystem-principles {
+  margin: 1.5cqw 0;
+  padding: 1cqw 1.3cqw;
+  background: rgba(113,213,239,.07);
+  border-radius: .4cqw;
+  font-size: 1.1cqw;
+  line-height: 1.4;
+  color: #bdd5e5;
+}
+.ecosystem-principles strong { color: var(--cyan); }
+.ecosystem-slide .foot { margin-top: .5cqw; flex-shrink: 0; font-size: .9cqw; }
+
+/* ==========================================
+   COMMUNITY ECOSYSTEM
+========================================== */
+
+.network {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  align-items: center;
+
+  gap: 1.6cqw;
+  flex: 1;
+}
+
+.network-col {
+  display: flex;
+  flex-direction: column;
+  gap: 1.2cqw;
+}
+
+.network-tag {
+  padding: 1.4cqw 1.6cqw;
+
+  border: 1px solid rgba(255,255,255,.23);
+  background: rgba(255,255,255,.043);
+
+  font-size: 1.52cqw;
+}
+
+.network-hub {
+  width: 21cqw;
+  height: 21cqw;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+
+  border-radius: 50%;
+  border: 1px solid rgba(140,232,255,.57);
+
+  box-shadow:
+    0 0 0 1.5cqw rgba(88,181,221,.07),
+    0 0 0 3.4cqw rgba(88,181,221,.04),
+    0 0 70px rgba(59,193,234,.17);
+
+  background: #0d3557;
+
+  font-family: var(--serif);
+  font-size: 3.4cqw;
+  line-height: 1.12;
+
+  margin: auto;
+}
+
+.network-hub span {
+  color: var(--cyan);
+}
+
+/* Final slide: one memorable message and a concrete partner invitation. */
+.closing-invitation { padding: 3.6cqw 6.3cqw 3cqw; }
+.closing-invitation .head { margin-bottom: 2cqw; }
+.closing-invitation .kicker { margin-bottom: 1cqw; }
+.closing-invitation h2 { font-size: 5.2cqw; max-width: 80cqw; margin-bottom: 1.3cqw; }
+.closing-purpose { font-size: 1.65cqw; line-height: 1.4; color: #bdd5e5; max-width: 68cqw; margin-bottom: 0; }
+.closing-action { margin: auto 0; padding-top: 1.8cqw; }
+.closing-action > h3 { font-size: 2.1cqw; margin-bottom: 1.2cqw; }
+.closing-options { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.2cqw; }
+.closing-option { padding: 1.3cqw 1.4cqw; border-top: 2px solid var(--cyan); background: rgba(113,213,239,.06); }
+.closing-option h3 { font-size: 1.6cqw; margin-bottom: .6cqw; }
+.closing-option p { font-size: 1.2cqw; line-height: 1.4; margin-bottom: 0; color: #bdd5e5; }
+.closing-question { font-size: 1.45cqw; color: var(--cyan); margin: 1.4cqw 0; }
+.closing-invitation .foot { flex-shrink: 0; margin-top: 1cqw; }
+
+/* ==========================================
+   CLOSING
+========================================== */
+
+.quote {
+  font-family: var(--serif);
+  font-size: 5.4cqw;
+  font-weight: 400;
+
+  line-height: 1.12;
+  letter-spacing: -.04em;
+
+  max-width: 75cqw;
+  margin: auto 0;
+}
+
+.closing-sub {
+  font-size: 1.75cqw;
+  line-height: 1.38;
+
+  color: #c6dbe8;
+
+  max-width: 55cqw;
+  margin-top: 2cqw;
+}
+
+/* ==========================================
+   CONTROLS
+========================================== */
+
+.controls {
+  width: min(98vw, calc((100svh - 72px) * 16 / 9));
+  height: 42px;
+
+  display: flex;
+  align-items: center;
+  gap: 9px;
+
+  color: #bed3e5;
+  font-size: 12px;
+}
+
+.controls button {
+  color: #d7e7f2;
+
+  background: rgba(255,255,255,.055);
+  border: 1px solid rgba(255,255,255,.2);
+
+  padding: 7px 10px;
+  cursor: pointer;
+}
+
+.controls button:disabled {
+  opacity: .38;
+  cursor: default;
+}
+
+.controls button:hover:not(:disabled) {
+  border-color: var(--cyan);
+}
+
+.progress {
+  height: 2px;
+  flex: 1;
+  background: rgba(255,255,255,.2);
+}
+
+.progress span {
+  display: block;
+  width: 0;
+  height: 100%;
+
+  background: var(--cyan);
+  transition: width .2s;
+}
+
+.counter {
+  font-variant-numeric: tabular-nums;
+  min-width: 62px;
+  text-align: center;
+}
+
+.hint {
+  margin-left: auto;
+  color: #89a8bf;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0,0,0,0);
+  white-space: nowrap;
+}
+
+/* ==========================================
+   FULLSCREEN
+========================================== */
+
+.stage:fullscreen {
+  width: 100vw;
+  height: 100vh;
+  aspect-ratio: auto;
+  border: none;
+}
+
+/* ==========================================
+   PRINT / PDF
+========================================== */
+
+@media print {
+
+  @page {
+    size: 13.333in 7.5in;
+    margin: 0;
+  }
+
+  html,
+  body {
+    height: auto;
+    overflow: visible;
+
+    print-color-adjust: exact;
+    -webkit-print-color-adjust: exact;
+  }
+
+  .app {
+    display: block;
+    height: auto;
+    padding: 0;
+  }
+
+  .stage {
+    width: 13.333in;
+    height: auto;
+    aspect-ratio: auto;
+
+    border: none;
+    box-shadow: none;
+
+    overflow: visible;
+  }
+
+  .slide,
+  .slide.active {
+    position: relative;
+    display: flex !important;
+
+    width: 13.333in;
+    height: 7.5in;
+
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .slide:last-child {
+    page-break-after: auto;
+    break-after: auto;
+  }
+
+  .controls {
+    display: none;
+  }
+}
+
+</style>
+</head>
+
+<body>
+
+<main class="app">
+
+<div class="stage" id="stage">
+
+<!-- ======================================
+     SLIDE 01 — INTRODUCTION
+====================================== -->
+
+<section class="slide deep active">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> AI EDITION</span>
+    <span>THE VISION</span>
+  </div>
+
+  <div class="cover-title">
+
+    <p class="kicker">
+      Plymouth's practical AI community
+    </p>
+
+    <h1>
+      PyPlym<br>
+      <span class="accent">AI Edition.</span>
+    </h1>
+
+    <p class="lead">
+      Where human potential meets AI capability.
+    </p>
+
+    <div class="microline">
+      <span>Human × Machine</span>
+      <span>Free community</span>
+    </div>
+
+  </div>
+
+  <div class="cover-motif" aria-hidden="true">
+    <img
+      src="assets/AI%20Assistance%20on%20the%20Climb.png"
+      alt=""
+      width="1312"
+      height="1199"
+    >
+  </div>
+
+  <div class="foot">
+    <span>PLYMOUTH · FROM JANUARY 2027</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 02 — THE OPPORTUNITY
+====================================== -->
+
+<section class="slide learning-evidence">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> WHY IT MATTERS</span>
+    <span>02</span>
+  </div>
+
+  <p class="kicker">The case for learning to use AI well</p>
+  <h2>AI can help us perform.<br><span class="accent">But are we learning?</span></h2>
+  <p class="evidence-intro">A study of high-school maths shows why the way we use AI matters.</p>
+
+  <div class="evidence-comparison">
+    <div class="evidence-card">
+      <p class="evidence-label">01 / During practice</p>
+      <h3>AI at hand.<br>Better scores.</h3>
+      <p>Students using unrestricted ChatGPT performed better on practice problems.</p>
+    </div>
+
+    <div class="evidence-arrow" aria-hidden="true">→</div>
+
+    <div class="evidence-card exam">
+      <p class="evidence-label">02 / Exam without AI</p>
+      <div class="evidence-result"><strong>−17%</strong><span>exam scores</span></div>
+      <p>Those students then scored lower than students who had practised without AI.</p>
+    </div>
+  </div>
+
+  <div class="evidence-lesson">
+    <strong>Design for thinking,<br>not just answers.</strong>
+    <p>A structured AI tutor that gave hints, using teacher-written solutions and common mistakes, avoided this harm.</p>
+  </div>
+
+  <p class="evidence-caveat">Study context: high-school maths in Turkey. 17% is a relative drop. The tutor did not outperform the no-AI group; a simple tutor prompt is a different intervention.</p>
+
+  <div class="foot">
+    <span>SOURCE: <a href="https://ideas.repec.org/a/nas/journl/v122y2025pe2422633122.html" target="_blank" rel="noopener noreferrer">BASTANI ET AL. · PNAS (2025)</a></span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 03 — OUR RESPONSE
+====================================== -->
+
+<section class="slide dark community-response">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> OUR RESPONSE</span>
+    <span>03</span>
+  </div>
+
+  <p class="kicker">What PyPlym is designed to change</p>
+  <h2>Beyond the demo.<br><span class="accent">Understand. Connect. Build.</span></h2>
+
+  <div class="response-table">
+    <div class="response-columns" aria-hidden="true">
+      <span>The gap</span><span></span><span>Our planned approach</span>
+    </div>
+
+    <div class="response-row">
+      <div class="response-gap">Beyond tool demos</div>
+      <span class="response-direction" aria-hidden="true">→</span>
+      <div>
+        <h3>Understand AI and its limits.</h3>
+        <p>How people think. How AI works. Where it fails.</p>
+      </div>
+    </div>
+
+    <div class="response-row">
+      <div class="response-gap">Beyond separate rooms</div>
+      <span class="response-direction" aria-hidden="true">→</span>
+      <div>
+        <h3>Learn side by side.</h3>
+        <p>Developers and non-technical people tackle a real task together.</p>
+      </div>
+    </div>
+
+    <div class="response-row">
+      <div class="response-gap">Beyond inspiration</div>
+      <span class="response-direction" aria-hidden="true">→</span>
+      <div>
+        <h3>Build something you can use.</h3>
+        <p>Leave with a prompt, tool or script—and a method to reuse.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>THE PROPOSED FORMAT · UNDERSTAND TOGETHER, THEN BUILD TOGETHER</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 04 — HUMAN × MACHINE
+====================================== -->
+
+<section class="slide human-machine">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> OUR PHILOSOPHY</span>
+    <span>04</span>
+  </div>
+
+  <p class="kicker">The thread through every evening</p>
+  <h2>Human <span class="accent">×</span> Machine</h2>
+  <p class="pairing-intro">One topic. Two perspectives. A better way to use AI.</p>
+
+  <div class="topic-layout">
+    <figure class="topic-illustration">
+      <img src="assets/AI%20Explains%2C%20Human%20Confused.png"
+           alt="An AI character explains enthusiastically while a person looks confused."
+           width="1312" height="1199">
+      <figcaption>An explanation is only useful<br>if the person understands.</figcaption>
+    </figure>
+
+    <div class="topic-pairs">
+      <div class="topic-pair-head" aria-hidden="true">
+        <span>The human question</span><span></span><span>The AI counterpart</span>
+      </div>
+      <div class="topic-pair">
+        <h3>How do we learn?</h3>
+        <span class="topic-link" aria-hidden="true">×</span>
+        <p>AI as a tutor.<br>AI as a crutch.</p>
+      </div>
+      <div class="topic-pair">
+        <h3>What do we delegate?</h3>
+        <span class="topic-link" aria-hidden="true">×</span>
+        <p>What can we safely<br>hand over to agents?</p>
+      </div>
+      <div class="topic-pair">
+        <h3>What do we trust?</h3>
+        <span class="topic-link" aria-hidden="true">×</span>
+        <p>Check AI output.<br>Spot confident errors.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="foot">
+    <span>PROPOSED SERIES · EVERY HUMAN CAPABILITY PAIRED WITH ITS AI COUNTERPART</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 05 — BUILDERS & EXPLORERS
+====================================== -->
+
+<section class="slide dark pairing-slide">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> THE COMMUNITY</span>
+    <span>05</span>
+  </div>
+
+  <p class="kicker">Two roles. One real task.</p>
+  <h2>The explorer drives.<br><span class="accent">The builder navigates.</span></h2>
+  <p class="pairing-subtitle">The person with the problem keeps their hands on the keyboard.</p>
+
+  <div class="pairing-roles">
+    <div class="pairing-role explorer">
+      <p class="role-label">The explorer / brings the task</p>
+      <h3>“Here’s what I need.”</h3>
+      <p>Bring a real task from work or life.<br>Try the steps yourself, with help.</p>
+      <p class="role-note">No coding needed. Curiosity required.</p>
+    </div>
+
+    <span class="pairing-plus" aria-hidden="true">+</span>
+
+    <div class="pairing-role">
+      <p class="role-label">The builder / brings technical skills</p>
+      <h3>“Let’s work it out.”</h3>
+      <p>Guide the approach, explain the technology<br>and help test what works.</p>
+      <p class="role-note">Comfortable with code. Ready to collaborate.</p>
+    </div>
+  </div>
+
+  <div class="pairing-outcome">
+    <strong>Build together. Use it again.</strong>
+    <span>A working prompt, tool or small script for the explorer’s task.</span>
+  </div>
+
+  <div class="foot">
+    <span>PLANNED PAIRING · TRIOS WHEN NEEDED · NO-CODE PAIRS WELCOME</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 06 — THE EXPERIENCE
+====================================== -->
+
+<section class="slide">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> THE EXPERIENCE</span>
+    <span>06</span>
+  </div>
+
+  <p class="kicker">
+    Inside a PyPlym evening
+  </p>
+
+  <h2>
+    From conversation<br>
+    <span class="accent">to creation.</span>
+  </h2>
+
+  <p class="lead">
+    A planned monthly experience designed
+    to turn curiosity into capability.
+  </p>
+
+  <div class="flow">
+
+    <div class="flow-item">
+
+      <b>01</b>
+
+      <h3>Connect</h3>
+
+      <p>
+        Meet people with different
+        strengths, experiences
+        and perspectives.
+      </p>
+
+    </div>
+
+    <div class="flow-item">
+
+      <b>02</b>
+
+      <h3>Discover</h3>
+
+      <p>
+        Explore the human science
+        and AI technology behind
+        one focused theme.
+      </p>
+
+    </div>
+
+    <div class="flow-item">
+
+      <b>03</b>
+
+      <h3>Make</h3>
+
+      <p>
+        Collaborate on a real task,
+        with practical guidance
+        available in the room.
+      </p>
+
+    </div>
+
+    <div class="flow-item">
+
+      <b>04</b>
+
+      <h3>Share</h3>
+
+      <p>
+        Reflect on what worked,
+        what didn't and what
+        can be taken forward.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>A PLANNED 2½-HOUR WEEKDAY EVENING</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 07 — SEASON ONE
+====================================== -->
+
+<section class="slide season-overview">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> THE PROGRAMME</span>
+    <span>07</span>
+  </div>
+
+  <p class="kicker">Season one / six monthly events planned</p>
+  <h2>Learn. Build. <span class="accent">Grow together.</span></h2>
+  <p class="season-intro">Six human capabilities, explored through practical work with AI.</p>
+
+  <div class="season-layout">
+    <div class="season-programme">
+      <div class="season-topic">
+        <span>01</span><div><h3>Learn better</h3><p>AI tutoring that helps<br>you do the thinking.</p></div>
+      </div>
+      <div class="season-topic">
+        <span>02</span><div><h3>Delegate well</h3><p>Hand over a task.<br>Keep a human check.</p></div>
+      </div>
+      <div class="season-topic">
+        <span>03</span><div><h3>Remember</h3><p>Human memory meets<br>AI retrieval.</p></div>
+      </div>
+      <div class="season-topic">
+        <span>04</span><div><h3>Judge</h3><p>Question confident answers.<br>Check the evidence.</p></div>
+      </div>
+      <div class="season-topic">
+        <span>05</span><div><h3>Act</h3><p>Give agents goals<br>and clear limits.</p></div>
+      </div>
+      <div class="season-topic">
+        <span>06</span><div><h3>Create together</h3><p>Share what we built<br>across the season.</p></div>
+      </div>
+    </div>
+
+    <figure class="season-celebration">
+      <img src="assets/AI%20Group%20High-Five%20Celebration.png"
+           alt="Two people and an AI character celebrate with a group high-five."
+           width="1312" height="1199">
+      <figcaption>Individual skills. Shared progress.</figcaption>
+    </figure>
+  </div>
+
+  <p class="season-review"><strong>Then pause and review.</strong> Events 3–6 are indicative and will be shaped by feedback.</p>
+
+  <div class="foot">
+    <span>PROPOSED SEASON · SIX EVENTS, THEN REVIEW AND PLAN THE NEXT</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 08 — REAL EXAMPLE
+====================================== -->
+
+<section class="slide">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> A REAL EXAMPLE</span>
+    <span>08</span>
+  </div>
+
+  <p class="kicker">
+    First planned edition · January 2027
+  </p>
+
+  <h2>
+    Use AI to learn.<br>
+    <span class="accent">Not to stop thinking.</span>
+  </h2>
+
+  <div class="event">
+
+    <div>
+
+      <div class="event-step">
+        <b>Understand</b>
+        <span>
+          How learning works and
+          why shortcuts can mislead us.
+        </span>
+      </div>
+
+      <div class="event-step">
+        <b>Explore</b>
+        <span>
+          How language models help,
+          and where they become a crutch.
+        </span>
+      </div>
+
+      <div class="event-step">
+        <b>Build</b>
+        <span>
+          A personal learning assistant
+          that asks, hints and checks.
+        </span>
+      </div>
+
+      <div class="event-step">
+        <b>Take away</b>
+        <span>
+          A reusable method for
+          learning more independently.
+        </span>
+      </div>
+
+    </div>
+
+    <div class="example-box">
+
+      <small>
+        What a participant could create
+      </small>
+
+      <h3>
+        A tutor that helps
+        you find the answer.
+      </h3>
+
+      <p>
+        Instead of doing the thinking
+        for you, it prompts you to
+        retrieve, explain and practise.
+      </p>
+
+      <p style="
+        font-size:1.05cqw;
+        color:#9dbbd0;
+        margin-bottom:0;
+      ">
+        Illustrative outcome, not a completed case study.
+      </p>
+
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>ONE TOPIC · TWO PERSPECTIVES · A PRACTICAL RESULT</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 09 — ENREAL
+====================================== -->
+
+<section class="slide deep connected-slide">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> CONNECTED LEARNING</span>
+    <span>09</span>
+  </div>
+
+  <p class="kicker">One community, online and in Plymouth</p>
+  <h2>Explore online.<br><span class="accent">Put it into practice together.</span></h2>
+  <p class="connected-intro">PyPlym is EnReal’s Plymouth chapter.</p>
+
+  <div class="connected-journey">
+    <div class="connected-card">
+      <p class="connected-time">01 / Online first</p>
+      <h3>EnReal</h3>
+      <p>Explore the topic online.<br>Discuss ideas and refine the material.</p>
+    </div>
+
+    <span class="connected-arrow" aria-hidden="true">→</span>
+
+    <div class="connected-card local">
+      <p class="connected-time">02 / The following month</p>
+      <h3>PyPlym</h3>
+      <p>The same topic, in Plymouth.<br>Learn from both sides, then build in pairs.</p>
+    </div>
+  </div>
+
+  <div class="connected-after">
+    <strong>Beyond the evening</strong>
+    <span>Use the open materials. Try what you built. Share your results at the next event.</span>
+  </div>
+
+  <div class="foot">
+    <span>PROPOSED TOPIC RHYTHM · PREPARE ONCE, REFINE FOR PLYMOUTH</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 10 — THE IMPACT
+====================================== -->
+
+<section class="slide">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> LOCAL VALUE</span>
+    <span>10</span>
+  </div>
+
+  <p class="kicker">
+    The difference we aim to make
+  </p>
+
+  <h2>
+    Value that travels<br>
+    <span class="accent">beyond the event.</span>
+  </h2>
+
+  <div class="impact">
+
+    <div class="impact-item">
+
+      <span class="symbol">↗</span>
+
+      <div>
+
+        <h3>For individuals</h3>
+
+        <p>
+          Practical skills, confidence
+          and a working starting point
+          for real-life tasks.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="impact-item">
+
+      <span class="symbol">◇</span>
+
+      <div>
+
+        <h3>For technical talent</h3>
+
+        <p>
+          Real problems, better communication
+          and connections with new peers.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="impact-item">
+
+      <span class="symbol">◎</span>
+
+      <div>
+
+        <h3>For organisations</h3>
+
+        <p>
+          A stronger connection to
+          practical AI learning and
+          local knowledge-sharing.
+        </p>
+
+      </div>
+
+    </div>
+
+    <div class="impact-item">
+
+      <span class="symbol">✳</span>
+
+      <div>
+
+        <h3>For Plymouth</h3>
+
+        <p>
+          A recurring place where
+          technology, skills and
+          community meet.
+        </p>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <div class="foot">
+    <span>INTENDED BENEFITS · NOT CLAIMED RESULTS</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 11 — THE ECOSYSTEM
+====================================== -->
+
+<section class="slide dark ecosystem-slide">
+
+  <div class="head">
+    <span class="logo">PYPlym <b>/</b> COMMUNITY &amp; COMMITMENT</span>
+    <span>11</span>
+  </div>
+
+  <p class="kicker">A community initiative, designed to be accountable</p>
+  <h2>Built together. <span class="accent">Open about progress.</span></h2>
+
+  <div class="ecosystem-layout">
+    <div class="ecosystem-contributions">
+      <div class="ecosystem-contribution">
+        <h3>Different strengths. Shared contribution.</h3>
+        <p>Participants bring tasks and skills. Partners contribute speakers, space and promotion. Sponsors help fund food.</p>
+      </div>
+      <div class="ecosystem-contribution">
+        <h3>Free to attend. Useful beyond the room.</h3>
+        <p>With or without coding experience: build something for a real task, learn a reusable method and take away open materials.</p>
+      </div>
+      <div class="ecosystem-contribution">
+        <h3>Measure it. Share what happened.</h3>
+        <p>Report attendance, inclusion, returning participants, completed builds, real-world use and partner contributions after each season.</p>
+      </div>
+    </div>
+
+    <figure class="ecosystem-visual">
+      <img src="assets/PyPlym%20AI%20Community%20Network.png"
+           alt="Proposed PyPlym network of learners, developers, local communities, employers, knowledge partners, and civic and venue partners."
+           width="1536" height="1024">
+      <figcaption>The network we want to bring together.<br>Partner roles shown are proposed.</figcaption>
+    </figure>
+  </div>
+
+  <p class="ecosystem-principles"><strong>Community first.</strong> Sponsors do not set content. No product pitches or recruitment drives. Participant details are never shared.</p>
+
+  <div class="foot">
+    <span>PROPOSED FORMAT &amp; PARTNERSHIPS · OPEN REPORTING AFTER EACH SEASON</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+<!-- ======================================
+     SLIDE 12 — CLOSING VISION
+====================================== -->
+
+<section class="slide deep closing-invitation">
+
+  <div class="head">
+    <span class="logo">SOFTOCEAN <b>/</b> PYPlym AI EDITION</span>
+    <span>BE PART OF IT</span>
+  </div>
+
+  <p class="kicker">Human × Machine / Plymouth</p>
+  <h2>Bring your curiosity.<br><span class="accent">Help Plymouth build with AI.</span></h2>
+  <p class="closing-purpose">A free monthly community where developers and non-technical people learn together, build something useful and leave with a method to reuse.</p>
+
+  <div class="closing-action">
+    <h3>Help make the first season possible.</h3>
+    <div class="closing-options">
+      <div class="closing-option">
+        <h3>Make room.</h3>
+        <p>Provide a venue or sponsor food for an evening.</p>
+      </div>
+      <div class="closing-option">
+        <h3>Share what you know.</h3>
+        <p>Bring a speaker, a session or a real problem to build around.</p>
+      </div>
+      <div class="closing-option">
+        <h3>Connect people.</h3>
+        <p>Help curious people and local communities find the programme.</p>
+      </div>
+    </div>
+    <p class="closing-question">What could we make possible together?</p>
+  </div>
+
+  <div class="foot">
+    <span>PROPOSED FIRST SEASON · FREE · MONTHLY · NO CODING NEEDED. CURIOSITY REQUIRED.</span>
+    <span class="slide-no"></span>
+  </div>
+
+</section>
+
+
+</div>
+
+
+<!-- ======================================
+     PRESENTATION CONTROLS
+====================================== -->
+
+<nav class="controls" aria-label="Presentation navigation">
+
+  <button id="prev" type="button">
+    ← Previous
+  </button>
+
+  <span class="counter" id="count"></span>
+
+  <div class="progress" id="bar">
+    <span id="fill"></span>
+  </div>
+
+  <button id="next" type="button">
+    Next →
+  </button>
+
+  <button id="fullscreen" type="button">
+    Fullscreen
+  </button>
+
+  <button id="print" type="button">
+    Print / PDF
+  </button>
+
+  <span class="hint">
+    ← → navigate
+  </span>
+
+</nav>
+
+<span
+  class="sr-only"
+  id="ann"
+  aria-live="polite">
+</span>
+
+</main>
+
+
+<!-- ======================================
+     JAVASCRIPT — PRESENTATION CONTROLS
+====================================== -->
+
+<script>
+
+const slides = [
+  ...document.querySelectorAll(".slide")
+];
+
+const previousButton =
+  document.getElementById("prev");
+
+const nextButton =
+  document.getElementById("next");
+
+const counter =
+  document.getElementById("count");
+
+const progressFill =
+  document.getElementById("fill");
+
+let currentSlide = 0;
+
+
+/* ==========================================
+   INITIALISE SLIDE NUMBERS
+========================================== */
+
+slides.forEach((slide, index) => {
+
+  const number = slide.querySelector(".slide-no");
+
+  if (number) {
+
+    number.textContent =
+      String(index + 1).padStart(2, "0")
+      + " / "
+      + String(slides.length).padStart(2, "0");
+
+  }
+
+});
+
+
+/* ==========================================
+   SHOW SLIDE
+========================================== */
+
+function showSlide(index) {
+
+  currentSlide = Math.max(
+    0,
+    Math.min(slides.length - 1, index)
+  );
+
+  slides.forEach((slide, i) => {
+
+    const active = i === currentSlide;
+
+    slide.classList.toggle("active", active);
+
+    slide.setAttribute(
+      "aria-hidden",
+      active ? "false" : "true"
+    );
+
+  });
+
+  counter.textContent =
+    String(currentSlide + 1).padStart(2, "0")
+    + " / "
+    + String(slides.length).padStart(2, "0");
+
+  const progress =
+    ((currentSlide + 1) / slides.length) * 100;
+
+  progressFill.style.width = progress + "%";
+
+  previousButton.disabled =
+    currentSlide === 0;
+
+  nextButton.disabled =
+    currentSlide === slides.length - 1;
+
+  document.getElementById("ann").textContent =
+    "Slide " + (currentSlide + 1);
+
+}
+
+
+/* ==========================================
+   BUTTON NAVIGATION
+========================================== */
+
+previousButton.addEventListener("click", () => {
+  showSlide(currentSlide - 1);
+});
+
+nextButton.addEventListener("click", () => {
+  showSlide(currentSlide + 1);
+});
+
+
+/* ==========================================
+   KEYBOARD NAVIGATION
+========================================== */
+
+document.addEventListener("keydown", (event) => {
+
+  if (
+    event.altKey ||
+    event.ctrlKey ||
+    event.metaKey
+  ) {
+    return;
+  }
+
+  if (
+    event.key === "ArrowRight" ||
+    event.key === "PageDown" ||
+    event.key === " "
+  ) {
+
+    event.preventDefault();
+
+    showSlide(currentSlide + 1);
+
+  }
+
+  if (
+    event.key === "ArrowLeft" ||
+    event.key === "PageUp"
+  ) {
+
+    event.preventDefault();
+
+    showSlide(currentSlide - 1);
+
+  }
+
+  if (event.key === "Home") {
+    showSlide(0);
+  }
+
+  if (event.key === "End") {
+    showSlide(slides.length - 1);
+  }
+
+});
+
+
+/* ==========================================
+   FULLSCREEN MODE
+========================================== */
+
+document
+  .getElementById("fullscreen")
+  .addEventListener("click", () => {
+
+    const stage = document.getElementById("stage");
+
+    if (!document.fullscreenElement) {
+
+      stage.requestFullscreen();
+
+    } else {
+
+      document.exitFullscreen();
+
+    }
+
+  });
+
+
+/* ==========================================
+   PRINT / EXPORT PDF
+========================================== */
+
+document
+  .getElementById("print")
+  .addEventListener("click", () => {
+
+    window.print();
+
+  });
+
+
+/* ==========================================
+   START PRESENTATION
+========================================== */
+
+showSlide(0);
+
+</script>
+
+</body>
+</html>

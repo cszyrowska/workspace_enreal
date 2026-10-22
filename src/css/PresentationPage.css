@@ -1,0 +1,24 @@
+.presentation-page {
+  display: flex;
+  flex-direction: column;
+  /* Keep navigation visible while the embedded deck fills the remaining screen. */
+  height: calc(100dvh - 76px);
+  min-height: 360px;
+  background: var(--navy);
+}
+
+.presentation-page iframe {
+  display: block;
+  width: 100%;
+  flex: 1;
+  min-height: 0;
+  border: 0;
+  background: #030c17;
+}
+
+@media (max-width: 700px) {
+  .presentation-page {
+    height: calc(100dvh - 64px);
+  }
+
+}

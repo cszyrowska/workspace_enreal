@@ -1,0 +1,109 @@
+.approach-visual {
+  position: relative;
+  align-self: center;
+  width: 100%;
+  max-width: 560px;
+  justify-self: center;
+}
+
+.approach-visual svg {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.approach-visual figcaption {
+  margin-top: -8px;
+  text-align: center;
+  font-size: 12px;
+  letter-spacing: 0.02em;
+  color: #536b70;
+}
+
+.approach-visual figcaption span {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 17px;
+  color: #876749;
+  margin-left: 4px;
+}
+
+@media (max-width: 700px) {
+  .approach-visual {
+    max-width: 420px;
+  }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .approach-visual .scene-fold {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: scene-float 5s ease-in-out infinite;
+  }
+
+  .approach-visual .scene-head {
+    /* Pivot at the base of the neck, in the SVG's coordinate system. */
+    transform-origin: 132px 307px;
+    animation: scene-head-nod 9s ease-in-out infinite;
+  }
+
+  .approach-visual .scene-sun-glow,
+  .approach-visual .scene-fold-glow {
+    transform-box: fill-box;
+    transform-origin: center;
+    animation: scene-glow-breathe 6s ease-in-out infinite;
+  }
+
+  .approach-visual .scene-sun-glow {
+    animation-duration: 8s;
+    animation-delay: -3s;
+  }
+
+  .approach-visual .scene-water {
+    animation: scene-shimmer 4s ease-in-out infinite;
+  }
+
+  .approach-visual .scene-stars circle {
+    animation: scene-twinkle 5s ease-in-out infinite;
+  }
+
+  .approach-visual .scene-stars circle:nth-child(even) {
+    animation-delay: -2.5s;
+  }
+
+  .approach-visual .scene-steam {
+    animation: scene-steam-rise 3s ease-out infinite;
+  }
+}
+
+@keyframes scene-float {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-14px) rotate(3deg); }
+}
+
+@keyframes scene-shimmer {
+  0%, 100% { opacity: 0.3; transform: translateX(-3px); }
+  50% { opacity: 0.85; transform: translateX(6px); }
+}
+
+@keyframes scene-twinkle {
+  0%, 100% { opacity: 0.45; }
+  50% { opacity: 1; }
+}
+
+@keyframes scene-steam-rise {
+  0% { opacity: 0; transform: translate(0, 3px); }
+  25% { opacity: 0.8; }
+  100% { opacity: 0; transform: translate(5px, -21px); }
+}
+
+@keyframes scene-head-nod {
+  0%, 100% { transform: rotate(-2deg); }
+  50% { transform: rotate(5deg); }
+}
+
+@keyframes scene-glow-breathe {
+  0%, 100% { opacity: 0.35; transform: scale(0.9); }
+  50% { opacity: 0.95; transform: scale(1.12); }
+}

@@ -1,0 +1,123 @@
+.plymouth {
+  padding-bottom: 64px;
+}
+
+.plymouth > .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 30px;
+}
+
+.plymouth > .eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1px;
+  background: #a7804d;
+}
+
+.plymouth-grid {
+  display: grid;
+  grid-template-columns: 0.85fr 1.25fr;
+  align-items: center;
+  gap: 64px;
+}
+
+.plymouth-copy .status {
+  border-color: #a6b7b4;
+  border-radius: 20px;
+  color: #49626c;
+  margin-bottom: 20px;
+  padding: 4px 12px;
+}
+
+.plymouth-copy h2 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(32px, 3.2vw, 44px);
+  font-weight: 400;
+  line-height: 1.15;
+  letter-spacing: -1.4px;
+  margin-bottom: 24px;
+}
+
+.plymouth-copy h2 > span {
+  color: #a37b4c;
+}
+
+.plymouth-copy h2 em {
+  display: inline-block;
+  margin-top: 10px;
+  font-size: 0.74em;
+  color: #54716f;
+  letter-spacing: -0.7px;
+}
+
+.plymouth-copy > p {
+  font-size: 14px;
+  color: #485d65;
+  line-height: 1.8;
+}
+
+.plymouth-copy .button {
+  border-radius: 32px;
+  margin-top: 24px;
+  padding: 13px 22px;
+  gap: 28px;
+}
+
+.plymouth-copy .plymouth-pending {
+  margin-top: 14px;
+  font-size: 11px;
+  max-width: 340px;
+  color: #62736f;
+}
+
+.plymouth-artwork img {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  background: #071b2b;
+}
+
+.plymouth-artwork figcaption {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 6px 16px;
+  padding-top: 14px;
+  color: #526b70;
+  font-size: 10px;
+}
+
+.plymouth-artwork figcaption > span:first-child {
+  font-family: Georgia, serif;
+  font-style: italic;
+  font-size: 13px;
+}
+
+@media (max-width: 1000px) {
+  .plymouth-grid {
+    gap: 32px;
+    grid-template-columns: 1fr 1.1fr;
+  }
+}
+
+@media (max-width: 700px) {
+  .plymouth {
+    padding-bottom: 40px;
+  }
+
+  .plymouth-grid {
+    grid-template-columns: 1fr;
+    gap: 28px;
+  }
+
+  .plymouth-copy h2 {
+    font-size: 38px;
+  }
+
+  .plymouth > .eyebrow {
+    margin-bottom: 24px;
+  }
+}
