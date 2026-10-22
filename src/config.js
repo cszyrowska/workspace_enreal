@@ -1,5 +1,5 @@
 export const homeActions = {
-  pyplym: { label: 'Discover PyPlym', href: 'http://pyplym.enreal.community' },
+  pyplym: { label: 'Discover PyPlym', href: 'https://pyplym.enreal.community' },
   presentation: { label: 'See the vision', href: '?page=presentation' },
 };
 
