@@ -1,0 +1,111 @@
+.about-enreal {
+  background: #f6f3ec;
+  color: #172832;
+  padding-block: 76px 64px;
+  border-bottom: 1px solid #e1e3da;
+}
+
+.about-enreal-layout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 80px;
+  align-items: start;
+}
+
+.about-enreal .eyebrow {
+  color: #68776c;
+  font-size: 10px;
+  margin-bottom: 24px;
+}
+
+.about-enreal h2 {
+  font: 400 clamp(34px, 3.5vw, 48px)/1.12 Georgia, serif;
+  letter-spacing: -1.6px;
+}
+
+.about-enreal h2 em {
+  color: #52706b;
+}
+
+.about-enreal-copy > p {
+  font-size: 15px;
+  line-height: 1.85;
+  color: #485d65;
+}
+
+.about-enreal-copy > p:first-child {
+  font-size: 19px;
+  line-height: 1.6;
+  color: #263e48;
+}
+
+.about-enreal-copy .about-enreal-purpose {
+  margin-top: 20px;
+  padding-left: 18px;
+  border-left: 2px solid #c4a06b;
+  font: italic 17px/1.6 Georgia, serif;
+  color: #65705e;
+}
+
+.about-enreal-principles {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 36px;
+  border-top: 1px solid #d4d9cf;
+  margin-top: 42px;
+  padding-top: 30px;
+}
+
+.about-principle {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.about-principle + .about-principle {
+  border-left: 1px solid #dde0d5;
+  padding-left: 28px;
+}
+
+.about-principle-icon {
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  width: 46px;
+  height: 46px;
+  border-radius: 50%;
+  background: #eae6dc;
+  color: #355360;
+}
+
+.about-principle h3 {
+  font-size: 16px;
+  font-weight: 550;
+  margin: 2px 0 8px;
+}
+
+.about-principle p {
+  color: #5e6e6c;
+  font-size: 13px;
+  line-height: 1.65;
+  max-width: 240px;
+}
+
+@media (max-width: 1000px) {
+  .about-enreal-layout { gap: 40px; }
+  .about-enreal-principles { gap: 20px; }
+  .about-principle { flex-direction: column; }
+  .about-principle + .about-principle { padding-left: 20px; }
+}
+
+@media (max-width: 700px) {
+  .about-enreal { padding-block: 48px 40px; }
+  .about-enreal-layout { grid-template-columns: 1fr; gap: 26px; }
+  .about-enreal h2 { font-size: 39px; }
+  .about-enreal .eyebrow { margin-bottom: 18px; }
+  .about-enreal-copy > p:first-child { font-size: 18px; }
+  .about-enreal-principles { grid-template-columns: 1fr; gap: 22px; margin-top: 30px; padding-top: 26px; }
+  .about-principle { flex-direction: row; }
+  .about-principle + .about-principle { border-left: 0; padding-left: 0; }
+  .about-principle p { max-width: none; }
+}

@@ -1,0 +1,129 @@
+/* Loaded through styles.css alongside the application styles. */
+.approach {
+  background: var(--navy);
+  padding-block: 20px 36px;
+}
+
+.approach-panel {
+  background: #f4f5f2;
+  color: #172832;
+  padding: 12px;
+  border-radius: 8px;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.perspective {
+  position: relative;
+  padding: 20px 22px;
+  border-radius: 4px;
+  --perspective-accent: #886233;
+  background: #ece7dd;
+}
+
+.perspective-machine {
+  --perspective-accent: #246879;
+  background: #e2ebea;
+}
+
+.perspective-practice {
+  --perspective-accent: #324f5d;
+  background: #e7e9e4;
+}
+
+.perspective-topline {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 32px;
+  margin-bottom: 16px;
+  color: var(--perspective-accent);
+}
+
+.perspective-number {
+  font-size: 10px;
+  letter-spacing: 1px;
+}
+
+
+.perspective-motif {
+  position: absolute;
+  top: 12px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 50px;
+  color: var(--perspective-accent);
+}
+
+.perspective .small-label {
+  margin-bottom: 8px;
+  color: var(--perspective-accent);
+  font-size: 9px;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+}
+
+.perspective h3 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 1.2;
+  letter-spacing: -0.5px;
+}
+
+.perspective-description {
+  margin-top: 10px;
+  color: #485d65;
+  font-size: 13px;
+  line-height: 1.65;
+}
+
+@media (max-width: 1000px) {
+  .perspective {
+    padding: 18px 16px;
+  }
+
+  .perspective h3 {
+    font-size: 20px;
+  }
+}
+
+@media (max-width: 700px) {
+  .approach {
+    padding-block: 16px 28px;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 8px;
+  }
+
+  .perspective {
+    padding: 18px 18px 18px 92px;
+  }
+
+  .perspective-topline {
+    display: none;
+  }
+
+  .perspective-motif {
+    top: 28px;
+    left: 6px;
+    transform: none;
+    width: 80px;
+    height: 48px;
+  }
+
+  .perspective h3 {
+    font-size: 20px;
+  }
+
+  .perspective-description {
+    margin-top: 8px;
+  }
+}

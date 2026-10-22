@@ -1,0 +1,58 @@
+.pyplym-page {
+  padding-block: 32px 80px;
+}
+
+.page-back {
+  font-size: 13px;
+  color: #49626c;
+}
+
+.pyplym-page-content {
+  max-width: 740px;
+  margin: 48px auto 0;
+}
+
+.pyplym-page h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(40px, 5vw, 64px);
+  line-height: 1.1;
+  font-weight: 400;
+  letter-spacing: -0.04em;
+  margin-bottom: 26px;
+}
+
+.pyplym-page-intro {
+  font-size: 21px;
+  line-height: 1.5;
+}
+
+.pyplym-page-content > p:not(.eyebrow) {
+  max-width: 650px;
+}
+
+.pyplym-page-notice {
+  margin-top: 32px;
+  padding: 25px 28px;
+  border-left: 3px solid #d0a66a;
+  background: #e8ece7;
+}
+
+.pyplym-page-notice h2 {
+  font-size: 23px;
+  letter-spacing: -0.5px;
+  margin-bottom: 12px;
+}
+
+.pyplym-page .button {
+  border-radius: 32px;
+}
+
+@media (max-width: 700px) {
+  .pyplym-page-content {
+    margin-top: 32px;
+  }
+
+  .pyplym-page-notice {
+    padding: 20px;
+  }
+}

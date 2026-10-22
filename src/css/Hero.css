@@ -1,0 +1,263 @@
+.hero-section {
+  background: var(--navy);
+  color: #f4f5f2;
+}
+
+.hero {
+  position: relative;
+  isolation: isolate;
+  display: grid;
+  grid-template-columns: 1.05fr 1fr;
+  column-gap: 30px;
+  padding-top: 48px;
+}
+
+.hero-copy {
+  align-self: center;
+  padding-block: 20px;
+}
+
+.hero .eyebrow {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  color: #97b5c2;
+  margin-bottom: 25px;
+}
+
+.hero .eyebrow::before {
+  content: '';
+  width: 25px;
+  height: 1px;
+  background: #ac895e;
+}
+
+.hero h1 {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-weight: 400;
+  font-size: clamp(48px, 5.3vw, 75px);
+  line-height: 1.04;
+  letter-spacing: -0.055em;
+  color: #f4f5f2;
+}
+
+.hero h1 .cyan {
+  color: #d0a66a;
+}
+
+.hero-subtitle {
+  font-size: clamp(18px, 1.9vw, 24px);
+  font-weight: 400;
+  line-height: 1.4;
+  letter-spacing: -0.6px;
+  margin-top: 23px;
+}
+
+.hero .intro {
+  max-width: 470px;
+  font-size: 15px;
+  line-height: 1.85;
+  margin-top: 22px;
+  color: #d1dce1;
+}
+
+.hero .button {
+  background: #f4f5f2;
+  color: #071b2b;
+  border-radius: 40px;
+  padding: 14px 20px 14px 24px;
+  gap: 25px;
+  margin-top: 28px;
+  box-shadow: 0 4px 12px #071b2b0c;
+  transition: background 160ms ease, box-shadow 160ms ease;
+}
+
+.hero .button span {
+  display: grid;
+  place-items: center;
+  width: 27px;
+  height: 27px;
+  border: 1px solid #071b2b40;
+  border-radius: 50%;
+  font-size: 17px;
+}
+
+.hero .button:hover {
+  background: #d8eced;
+  box-shadow: 0 5px 18px #071b2b20;
+}
+
+.cta-caption {
+  font-size: 11px;
+  color: #a7bbc5;
+  margin-top: 13px;
+}
+
+.hero-bottom {
+  grid-column: 1 / -1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 28px;
+  padding: 24px 0;
+  border-bottom: 1px solid #36505f;
+  font-size: 12px;
+  color: #a7bbc5;
+}
+
+.hero-bottom > span {
+  font-family: Georgia, 'Times New Roman', serif;
+  font-style: italic;
+  font-size: 16px;
+  color: #a7bbc5;
+}
+
+.hero-bottom a {
+  color: #f4f5f2;
+}
+
+.hero-bottom a span {
+  margin-left: 20px;
+}
+
+@media (min-width: 1500px) {
+  .hero {
+    padding-top: 65px;
+  }
+}
+
+@media (max-width: 1000px) {
+  .hero {
+    column-gap: 15px;
+  }
+
+  .hero h1 {
+    font-size: clamp(43px, 6vw, 60px);
+  }
+
+  .hero .intro {
+    font-size: 14px;
+    line-height: 1.75;
+  }
+}
+
+@media (max-width: 700px) {
+  .hero {
+    grid-template-columns: 1fr;
+    padding-top: 30px;
+    gap: 12px;
+  }
+
+  .hero h1 {
+    font-size: clamp(46px, 10vw, 65px);
+  }
+
+  .hero-subtitle {
+    font-size: 21px;
+    margin-top: 20px;
+  }
+
+  .hero .intro {
+    font-size: 15px;
+    max-width: 540px;
+  }
+
+  .hero-bottom {
+    margin-top: 12px;
+    gap: 20px;
+    font-size: 11px;
+  }
+
+  .hero-bottom > span {
+    font-size: 13px;
+    max-width: 150px;
+  }
+
+  .hero-bottom a span {
+    margin-left: 5px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hero .button {
+    transition: none;
+  }
+}
+
+.hero a:focus-visible {
+  outline-color: #78d5e4;
+}
+
+.hero .approach-visual figcaption {
+  color: #a7bbc5;
+}
+
+.hero .approach-visual figcaption span {
+  color: #dfbc8b;
+}
+
+.hero-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.hero-actions .button {
+  margin-top: 0;
+  gap: 14px;
+  font-size: 13px;
+}
+
+.hero .button-secondary {
+  background: transparent;
+  color: #f4f5f2;
+  border: 1px solid #718c98;
+}
+
+.hero .button-secondary span {
+  border-color: #718c98;
+}
+
+.hero .button-secondary:hover {
+  background: #123a55;
+}
+
+.hero-tagline {
+  margin-top: 18px;
+  font-family: Georgia, 'Times New Roman', serif;
+  font-size: clamp(28px, 3vw, 40px);
+  line-height: 1.15;
+  letter-spacing: -0.035em;
+  color: #f4f5f2;
+}
+
+.hero-tagline + .hero-subtitle {
+  margin-top: 12px;
+}
+
+.hero-name-meaning {
+  margin-top: 0;
+  color: #dfbc8b;
+  font-size: 12px;
+  font-weight: 400;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.hero-title-row + .hero-tagline {
+  margin-top: 24px;
+}
+
+.hero-title-row {
+  display: flex;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 8px 20px;
+}
+
+@media (max-width: 700px) {
+  .hero-title-row {
+    column-gap: 12px;
+  }
+}

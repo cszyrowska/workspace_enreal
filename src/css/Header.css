@@ -1,0 +1,83 @@
+.site-header {
+  min-height: 76px;
+  display: flex;
+  align-items: center;
+  gap: 40px;
+  border-bottom: 1px solid var(--line);
+}
+
+nav {
+  display: flex;
+  gap: 32px;
+  margin-left: auto;
+  font-size: 14px;
+  font-weight: 550;
+}
+
+.prototype-tag {
+  font-size: 11px;
+  border-left: 1px solid var(--line);
+  padding-left: 28px;
+  color: #52636a;
+}
+
+@media(max-width:1000px) {
+  .prototype-tag {
+    display: none;
+  }
+}
+
+@media(max-width:700px) {
+  .site-header {
+    min-height: 64px;
+    gap: 20px;
+  }
+
+  nav {
+    gap: 16px;
+    font-size: 12px;
+  }
+}
+
+@media(max-width:360px) {
+  nav {
+    gap: 10px;
+    font-size: 11px;
+  }
+}
+
+/* Presentation-only layout; the home header keeps its existing appearance. */
+.presentation-header nav {
+  flex-wrap: wrap;
+  justify-content: flex-end;
+  gap: 8px 28px;
+}
+
+@media (max-width: 700px) {
+  .presentation-header {
+    gap: 14px;
+  }
+
+  .presentation-header nav {
+    gap: 4px 14px;
+    font-size: 11px;
+  }
+}
+
+.site-header nav {
+  align-items: center;
+}
+
+@media (max-width: 700px) {
+  .site-header:not(.presentation-header) {
+    flex-wrap: wrap;
+    gap: 10px;
+    padding-block: 14px;
+  }
+
+  .site-header:not(.presentation-header) nav {
+    width: 100%;
+    justify-content: space-between;
+    gap: 10px;
+  }
+}

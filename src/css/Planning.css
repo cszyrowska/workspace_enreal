@@ -1,0 +1,96 @@
+.planning {
+  display: grid;
+  grid-template-columns: 0.65fr 1.65fr;
+  align-items: start;
+  gap: 72px;
+  padding-block: 76px;
+  border-top: 1px solid #d5dbd6;
+}
+
+.planning-heading .eyebrow {
+  margin-bottom: 26px;
+}
+
+.planning-heading h2 {
+  font: 400 clamp(36px, 3.6vw, 50px)/1.1 Georgia, serif;
+  letter-spacing: -1.6px;
+  margin-bottom: 28px;
+}
+
+.planning-heading h2 em {
+  color: #52706b;
+}
+
+.planning-heading > p:not(.eyebrow) {
+  color: #52636a;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+.planning-heading .planning-note {
+  margin-top: 22px;
+  padding-top: 18px;
+  border-top: 1px solid #d5dbd6;
+  font-size: 12px;
+  color: #726951;
+}
+
+.planning-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid #9aada9;
+}
+
+.planning-entry {
+  display: grid;
+  grid-template-columns: 24px minmax(0, 0.85fr) minmax(0, 1.15fr);
+  gap: 24px;
+  padding-block: 30px;
+  border-bottom: 1px solid #d0d9d4;
+  align-items: start;
+}
+
+.planning-number {
+  color: #91744e;
+  font-size: 11px;
+  letter-spacing: 1px;
+  padding-top: 2px;
+}
+
+.planning-entry .planning-status {
+  color: #52706b;
+  text-transform: uppercase;
+  font-size: 9px;
+  letter-spacing: 1.1px;
+  line-height: 1.5;
+  margin-bottom: 10px;
+}
+
+.planning-entry h3 {
+  font: 400 24px/1.2 Georgia, serif;
+  letter-spacing: -0.6px;
+  color: #102e40;
+}
+
+.planning-entry .planning-description {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.85;
+  color: #52636a;
+}
+
+@media (max-width: 1000px) {
+  .planning { grid-template-columns: 0.7fr 1.3fr; gap: 36px; }
+  .planning-entry { grid-template-columns: 22px 1fr; gap: 12px 18px; }
+  .planning-entry .planning-description { grid-column: 2; }
+}
+
+@media (max-width: 700px) {
+  .planning { grid-template-columns: 1fr; padding-block: 48px; gap: 30px; }
+  .planning-heading h2 { font-size: 40px; margin-bottom: 20px; }
+  .planning-heading .eyebrow { margin-bottom: 18px; }
+  .planning-heading .planning-note { margin-top: 16px; padding-top: 12px; }
+  .planning-entry { padding-block: 24px; }
+  .planning-entry h3 { font-size: 25px; }
+}

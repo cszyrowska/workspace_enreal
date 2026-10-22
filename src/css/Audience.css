@@ -1,0 +1,38 @@
+.people-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 90px;
+}
+
+.large-copy {
+  font-size: 21px;
+  line-height: 1.5;
+  letter-spacing: -.4px;
+}
+
+.people-grid p+p {
+  font-size: 14px;
+  color: #52636a;
+  margin-top: 20px;
+}
+
+@media(max-width:1000px) {
+  .people-grid {
+    gap: 40px;
+  }
+}
+
+@media(max-width:700px) {
+  .people-grid {
+    grid-template-columns: 1fr;
+    gap: 24px;
+  }
+
+  .people-grid {
+    gap: 28px;
+  }
+
+  .large-copy {
+    font-size: 20px;
+  }
+}

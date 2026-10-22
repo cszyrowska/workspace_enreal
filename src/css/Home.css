@@ -1,0 +1,19 @@
+.section {
+  padding-block: 85px;
+}
+
+@media (max-width: 700px) {
+  .section {
+    padding-block: 55px;
+  }
+}
+
+.home-local {
+  padding-top: 60px;
+}
+
+@media (max-width: 700px) {
+  .home-local {
+    padding-top: 40px;
+  }
+}
