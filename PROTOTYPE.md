@@ -23,7 +23,7 @@ The build outputs `dist/`. This is a static frontend: no backend, accounts, regi
 ## Edit points
 
 - `src/config.js`: the two user-requested hero actions, PyPlym holding-page destination, local presentation source and supplied public presentation URL. Replace `homeActions.pyplym.href` when the new PyPlym website is ready.
-- `src/main.jsx`: application entry, query-page selection and shared header/footer composition. `?page=pyplym` opens the temporary chapter page; `?page=presentation` opens the deck viewer. These routes work on static hosting without server rewrites, including direct links, refresh and browser back/forward. Header/footer home links clear the query before navigating to a section.
+- `src/main.jsx`: application entry, query-page selection and shared header/footer composition. `?page=pyplym` redirects legacy chapter links to `http://pyplym.enreal.community`; `?page=presentation` opens the deck viewer. These routes work on static hosting without server rewrites, including direct links, refresh and browser back/forward. Header/footer home links clear the query before navigating to a section.
 - `src/jsx/Home.jsx`: home page composition. Each section and the original inline SVG have their own component in `src/jsx/` and a matching stylesheet in `src/css/`.
 - `src/jsx/ApproachVisual.jsx`: original illustration. The hero illustration uses a person and a precise folded blue form using an unbranded laptop with a coffee cup resting on the desk against an arched dusk seascape. It is an original SVG, not a logo or product screenshot. The hero uses a local Georgia serif for an editorial direction; body text uses the system sans-serif stack.
 - `src/styles.css`: shared typography, utilities, focus styles, reduced-motion handling and proposed palette. Page and section layouts and breakpoints live in the matching `src/css/` files. Local system fonts only, including Georgia for the hero heading and illustration caption. Navy #071B2B, cyan #28B6D1, warm off-white #F4F5F2, ink #172832 and gold #D0A66A; darker teal is used for text contrast. These are proposals, not approved brand specifications.
@@ -63,7 +63,7 @@ The user designated the seven Markdown documents in `information/` as the source
 
 The home page has two hero buttons: **Discover PyPlym** and **See the vision**. The local chapter section is immediately below the hero, with section numbers adjusted to the new reading order. Its button shares the configurable PyPlym destination.
 
-- `src/jsx/PyPlymPage.jsx` and `src/css/PyPlymPage.css`: clearly labelled temporary page for the future PyPlym website; no fabricated booking or registration.
+- PyPlym buttons use the dedicated website URL in `src/config.js`; the former temporary chapter page has been removed.
 - `src/jsx/PresentationPage.jsx` and `src/css/PresentationPage.css`: local iframe viewer beneath the shared EnReal header, slide-control guidance, standalone viewing link and the user-supplied public presentation link.
 - `presentation/01-pyplym-ai-edition.html` and `presentation/assets/`: supplied deck and images, preserved unchanged. It is a **PyPlym AI Edition** deck, so the viewer introduces it as EnReal's approach through its planned Plymouth chapter, rather than relabelling it a general EnReal deck.
 - `vite.config.js`: uses `presentation/` as Vite's public directory, serving/copying the standalone HTML and relative images unchanged. No duplicated deck or extra dependency is needed. Its published local URL is `/01-pyplym-ai-edition.html`.

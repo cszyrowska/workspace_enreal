@@ -4,7 +4,7 @@ import './styles.css';
 import Header from './jsx/Header';
 import Footer from './jsx/Footer';
 import Home from './jsx/Home';
-import PyPlymPage from './jsx/PyPlymPage';
+import { homeActions } from './config';
 import PresentationPage from './jsx/PresentationPage';
 
 function App() {
@@ -17,10 +17,13 @@ function App() {
     });
     return () => cancelAnimationFrame(frame);
   }, [page]);
-  const Page = page === 'presentation' ? PresentationPage : page === 'pyplym' ? PyPlymPage : Home;
-  document.title = page === 'pyplym'
-    ? 'PyPlym — EnReal’s Plymouth chapter'
-    : page === 'presentation' ? 'The vision — EnReal' : 'EnReal — Human judgement. Technical honesty.';
+  // Keep existing chapter bookmarks working after moving to the dedicated site.
+  if (page === 'pyplym') {
+    window.location.replace(homeActions.pyplym.href);
+    return null;
+  }
+  const Page = page === 'presentation' ? PresentationPage : Home;
+  document.title = page === 'presentation' ? 'The vision — EnReal' : 'EnReal — Human judgement. Technical honesty.';
   return (
     <>
       <a className="skip-link" href="#main">Skip to content</a>
